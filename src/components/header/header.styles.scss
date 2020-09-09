@@ -1,0 +1,35 @@
+.header {
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+  }
+
+  &__logo {
+    font-family: 'Acme', sans-serif;
+    font-size: 3rem;
+  }
+
+  &__tries {
+    font-size: 2.6rem;
+  }
+
+  &__btn {
+    margin-left: 4rem;
+    padding: 0.3rem 2rem;
+    border: solid 1px #fff;
+    color: #fff;
+    background-color: transparent;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+  }
+
+  &__btn:hover {
+    color: #000;
+    background-color: #fff;
+  }
+}

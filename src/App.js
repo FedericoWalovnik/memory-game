@@ -1,13 +1,18 @@
 import React from 'react';
 
-import './App.css';
+import './scss/globalVariables.scss';
+import './App.scss';
 
-function App() {
-  return (
-    <div>
-      <h1>Memory Game</h1>
-    </div>
-  );
+import Header from './components/header/header.component';
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header triesCount="20" />
+      </div>
+    );
+  }
 }
 
 export default App;
