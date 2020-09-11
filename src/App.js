@@ -12,7 +12,8 @@ const getInitialState = () => {
   return {
     deck,
     pairSelected: [],
-    comparing: false
+    comparing: false,
+    triesCount: 0
   };
 };
 
@@ -25,7 +26,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header triesCount="20" />
+        <Header
+          triesCount={this.state.triesCount}
+          resetGame={() => this.resetGame()}
+        />
         <Board
           deck={this.state.deck}
           pairSelected={this.state.pairSelected}
@@ -44,12 +48,10 @@ class App extends React.Component {
       return;
     }
 
-    console.log(this.state.pairSelected);
     const pairSelected = [...this.state.pairSelected, card];
     this.setState({
       pairSelected
     });
-    console.log(pairSelected);
 
     if (pairSelected.length === 2) {
       this.comparePair(pairSelected);
@@ -77,15 +79,20 @@ class App extends React.Component {
       this.setState({
         pairSelected: [],
         deck,
-        comparing: false
+        comparing: false,
+        triesCount: this.state.triesCount + 1
       });
     }, 800);
   }
 
   checkForWinner = (deck) => {
     if (deck.filter((card) => !card.wasGuessed).length === 0) {
-      alert('You won in 20 tries');
+      alert(`You won in ${this.state.triesCount} tries!!`);
     }
+  };
+
+  resetGame = () => {
+    this.setState(getInitialState());
   };
 }
 

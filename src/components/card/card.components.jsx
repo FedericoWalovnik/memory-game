@@ -8,9 +8,6 @@ class Card extends React.Component {
   render() {
     return (
       <div className="card">
-        {console.log(
-          `card:${this.props.index} guessed:${this.props.wasGuessed}`
-        )}
         <ReactCardFlip
           isFlipped={this.props.wasGuessed || this.props.isBeingCompared}
           className="card__flipcard"
