@@ -7,14 +7,19 @@ import Header from './components/header/header.component';
 import Board from './components/board/board.component';
 import BuildDeck from './utils/buildDeck';
 
+const getInitialState = () => {
+  const deck = BuildDeck();
+  return {
+    deck,
+    pairSelected: [],
+    comparing: false
+  };
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      deck: BuildDeck(),
-      pairSelected: [],
-      comparing: false
-    };
+    this.state = getInitialState();
   }
 
   render() {
@@ -48,7 +53,7 @@ class App extends React.Component {
 
     if (pairSelected.length === 2) {
       this.comparePair(pairSelected);
-      console.log(pairSelected);
+      this.checkForWinner(this.state.pairSelected);
     }
   };
 
@@ -67,6 +72,8 @@ class App extends React.Component {
           return { ...card, wasGuessed: true };
         });
       }
+
+      this.checkForWinner(deck);
       this.setState({
         pairSelected: [],
         deck,
@@ -74,6 +81,12 @@ class App extends React.Component {
       });
     }, 800);
   }
+
+  checkForWinner = (deck) => {
+    if (deck.filter((card) => !card.wasGuessed).length === 0) {
+      alert('You won in 20 tries');
+    }
+  };
 }
 
 export default App;
